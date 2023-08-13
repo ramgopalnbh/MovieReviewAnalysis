@@ -1,0 +1,31 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: UserMgmtService
+          uri: lb://UserMgmtService
+          predicates:
+            - Path=/user/**
+        - id: MovieMgmtService
+          uri: lb://MovieMgmtService
+          predicates:
+            - Path=/movie/**,/censorboard/**
+        - id: RatingMgmtService
+          uri: lb://RatingMgmtService
+          predicates:
+            - Path=/rating/**
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

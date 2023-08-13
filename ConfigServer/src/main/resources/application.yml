@@ -1,0 +1,12 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: ConfigMgmtService
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ramgopalnbh/mra-config-repo
+          clone-on-start: true
